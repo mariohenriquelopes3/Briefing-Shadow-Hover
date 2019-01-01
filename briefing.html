@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<style>
+		body, html {
+			margin: 0;
+			border: 0;
+			padding: 0;
+			overflow-x: hidden;
+		}
+		.box {
+			position: fixed;
+			left: 0;
+			top: 0;
+			overflow: hidden;
+		}
+		/*
+		.box2 {
+			width: 525px;
+			height: 350px;
+		}
+		*/
+		.box2 img {
+			width: 100%;
+			height: 100%;
+		}
+		.box .alpha {
+			background-color: #434343;
+			opacity: 0;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+		}
+		.box .header {
+			position: absolute;
+			left: 50%;
+			top: 16px;
+			display: inline-block;
+			transform: translateX(-50%);
+			white-space: nowrap;
+			color: white;
+			opacity: 0;
+			font-size: 22px;
+		}
+	</style>
+</head>
+<body>
+	
+	<!-- Noticia -->
+	<div class="box">
+		<div class="box2">
+			<img src="imagem.jpg" />
+		</div>
+		<div class="alpha"></div>
+		<div class="header">BRIEFING</div>
+	</div>
+
+	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+	<script type="text/javascript">
+		function rolarPagina() {
+			var el = document.scrollingElement || document.documentElement; 
+			var scrollTop = el.scrollTop;
+			var limiteScroll = 800;
+			if (scrollTop > limiteScroll) {
+				scrollTop = limiteScroll;
+			}
+			var percentual = (scrollTop / limiteScroll);
+
+			var alt = (HeightBox - ((HeightBox - MinHeightBox) * percentual));
+			document.querySelector('.box').style.height = alt + 'px';
+
+			var alt2 = ((alt <= MinHeightBox2)? MinHeightBox2:alt);
+			document.querySelector('.box2').style.height = alt2 + 'px';
+
+			var larg2 = ((HeightBox * 1.5) - (((HeightBox * 1.5) - widthBox) * percentual));
+			document.querySelector('.box2').style.width = larg2 + 'px';
+			
+			document.querySelector('.box .alpha').style.opacity = percentual;
+			document.querySelector('.box .header').style.opacity = percentual;
+			
+		}
+
+		function initEffect() {
+			document.querySelector('.box').style.width = widthBox + 'px';
+			document.querySelector('.box').style.height = HeightBox + 'px';
+			
+			document.querySelector('.box2').style.width = (HeightBox * 1.5) + 'px';
+			document.querySelector('.box2').style.height = HeightBox + 'px';
+
+			rolarPagina();
+		}
+
+		// Box
+		var widthBox = 360;
+		var HeightBox = 360;
+		var MinHeightBox = 58;
+		
+		// Box 2
+		var MinHeightBox2 = 240;
+
+		// Header
+		var topHeader = 16;
+		
+		document.addEventListener("scroll", rolarPagina);
+		window.addEventListener("load", initEffect);
+	</script>
+</body>
+</html>
