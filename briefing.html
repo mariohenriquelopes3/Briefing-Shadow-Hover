@@ -51,6 +51,8 @@
 </head>
 <body>
 	
+	<div class="pseudobox">
+	</div>
 	<!-- Noticia -->
 	<div class="box">
 		<div class="box2">
@@ -59,6 +61,8 @@
 		<div class="alpha"></div>
 		<div class="header">BRIEFING</div>
 	</div>
+
+	Page Content
 
 	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
@@ -77,6 +81,8 @@
 			var alt = (HeightBox - ((HeightBox - MinHeightBox) * percentual));
 			document.querySelector('.box').style.height = alt + 'px';
 
+			document.querySelector('.pseudobox').style.height = (HeightBox + scrollTop - (HeightBox - alt)) + 'px';
+
 			var alt2 = ((alt <= MinHeightBox2)? MinHeightBox2:alt);
 			document.querySelector('.box2').style.height = alt2 + 'px';
 
@@ -89,8 +95,30 @@
 		}
 
 		function initEffect() {
+			// Box
+			widthBox = window.innerWidth;
+			HeightBox = ((window.innerHeight < widthBox) ? window.innerHeight : widthBox);
+
+			MinHeightBox = 58;
+			
+			// Box 2
+			MinHeightBox2 = HeightBox * 0.65;
+
+			// Header
+			topHeader = 16;
+
+			// Aspect
+			aspecto = 1.5;
+
+			// Limit Scroll
+			limiteScroll = HeightBox;
+
+
 			document.querySelector('.box').style.width = widthBox + 'px';
 			document.querySelector('.box').style.height = HeightBox + 'px';
+
+			document.querySelector('.pseudobox').style.width = widthBox + 'px';
+			document.querySelector('.pseudobox').style.height = HeightBox + 'px';
 			
 			document.querySelector('.box2').style.width = (HeightBox * aspecto) + 'px';
 			document.querySelector('.box2').style.height = HeightBox + 'px';
@@ -98,25 +126,11 @@
 			rolarPagina();
 		}
 
-		// Box
-		var widthBox = 360;
-		var HeightBox = 360;
-		var MinHeightBox = 58;
-		
-		// Box 2
-		var MinHeightBox2 = 240;
-
-		// Header
-		var topHeader = 16;
-
-		// Aspect
-		var aspecto = 1.5;
-
-		// Limit Scroll
-		var limiteScroll = 800;
+		var widthBox, HeightBox, MinHeightBox, MinHeightBox2, topHeader, aspecto, limiteScroll;
 		
 		document.addEventListener("scroll", rolarPagina);
 		window.addEventListener("load", initEffect);
+		window.addEventListener("resize", initEffect);
 	</script>
 </body>
 </html>
