@@ -68,7 +68,7 @@
 		function rolarPagina() {
 			var el = document.scrollingElement || document.documentElement; 
 			var scrollTop = el.scrollTop;
-			var limiteScroll = 800;
+			
 			if (scrollTop > limiteScroll) {
 				scrollTop = limiteScroll;
 			}
@@ -80,7 +80,7 @@
 			var alt2 = ((alt <= MinHeightBox2)? MinHeightBox2:alt);
 			document.querySelector('.box2').style.height = alt2 + 'px';
 
-			var larg2 = ((HeightBox * 1.5) - (((HeightBox * 1.5) - widthBox) * percentual));
+			var larg2 = ((HeightBox * aspecto) - (((HeightBox * aspecto) - widthBox) * percentual));
 			document.querySelector('.box2').style.width = larg2 + 'px';
 			
 			document.querySelector('.box .alpha').style.opacity = percentual;
@@ -92,7 +92,7 @@
 			document.querySelector('.box').style.width = widthBox + 'px';
 			document.querySelector('.box').style.height = HeightBox + 'px';
 			
-			document.querySelector('.box2').style.width = (HeightBox * 1.5) + 'px';
+			document.querySelector('.box2').style.width = (HeightBox * aspecto) + 'px';
 			document.querySelector('.box2').style.height = HeightBox + 'px';
 
 			rolarPagina();
@@ -108,6 +108,12 @@
 
 		// Header
 		var topHeader = 16;
+
+		// Aspect
+		var aspecto = 1.5;
+
+		// Limit Scroll
+		var limiteScroll = 800;
 		
 		document.addEventListener("scroll", rolarPagina);
 		window.addEventListener("load", initEffect);
